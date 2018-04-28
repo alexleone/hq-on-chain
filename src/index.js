@@ -6,7 +6,6 @@ import { DrizzleProvider } from 'drizzle-react'
 
 // Layouts
 import App from './App'
-import HomeContainer from './layouts/home/HomeContainer'
 import MainStart from './MainStart';
 import CreateGame from './CreateGame';
 import ManageGame from './ManageGame';
