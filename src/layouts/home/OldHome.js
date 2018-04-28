@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import { AccountData, ContractData, ContractForm } from 'drizzle-react-components'
 import logo from '../../logo.png'
 
-class Home extends Component {
+class OldHome extends Component {
   render() {
     return (
       <main className="container">
@@ -57,4 +57,4 @@ class Home extends Component {
   }
 }
 
-export default Home
+export default OldHome
