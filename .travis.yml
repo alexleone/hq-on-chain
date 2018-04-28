@@ -1,0 +1,18 @@
+language: node_js
+node_js:
+  - "node"
+install:
+  - npm install
+script:
+  - npm run build
+deploy:
+  provider: s3
+  access_key_id: $AWS_KEY_ID
+  secret_access_key: $AWS_SECRET_ACCESS_KEY
+  bucket: $AWS_S3_BUCKET
+  region: us-east-1
+  local_dir: build_webpack
+  skip_cleanup: true
+  acl: public_read
+  on:
+    branch: master
