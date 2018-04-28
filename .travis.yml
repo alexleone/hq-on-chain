@@ -6,6 +6,7 @@ install:
 script:
   - npm run truffleCompile
   - npm run build
+  - npm run predeploy
 deploy:
   provider: s3
   access_key_id: $AWS_KEY_ID
