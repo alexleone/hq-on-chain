@@ -5,12 +5,14 @@ install:
   - npm install
 script:
   - npm run build
+  - npm run predeploy
 deploy:
   provider: s3
   access_key_id: $AWS_KEY_ID
   secret_access_key: $AWS_SECRET_ACCESS_KEY
   bucket: $AWS_S3_BUCKET
   region: $AWS_REGION
+  local_dir: build_deploy
   skip_cleanup: true
   acl: public_read
   on:
