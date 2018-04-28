@@ -1,6 +1,6 @@
-import ComplexStorage from './../build/contracts/ComplexStorage.json'
-import SimpleStorage from './../build/contracts/SimpleStorage.json'
-import TutorialToken from './../build/contracts/TutorialToken.json'
+// import ComplexStorage from './../build/contracts/ComplexStorage.json'
+// import SimpleStorage from './../build/contracts/SimpleStorage.json'
+// import TutorialToken from './../build/contracts/TutorialToken.json'
 import GameFactory from './../build/contracts/GameFactory.json'
 
 const drizzleOptions = {
@@ -12,13 +12,13 @@ const drizzleOptions = {
     }
   },
   contracts: [
-    ComplexStorage,
-    SimpleStorage,
-    TutorialToken,
+    // ComplexStorage,
+    // SimpleStorage,
+    // TutorialToken,
     GameFactory
   ],
   events: {
-    SimpleStorage: ['StorageSet']
+    // SimpleStorage: ['StorageSet']
   },
   polls: {
     accounts: 1500
