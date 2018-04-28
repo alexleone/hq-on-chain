@@ -8,17 +8,18 @@ contract GameFactory{
 //TO-DO: Checks equal number questions answers
 
 address[] public contracts;
+address public owner = msg.sender;
 
 function createGame(
   uint entryFee,
   string listQuestions,
-  string listAnswers
+  string listHashedAnswers
   )
   public
   returns(address newContract)
   {
 
-  Game g = new Game(msg.sender, entryFee, listQuestions, listAnswers);
+  Game g = new Game(msg.sender, entryFee, listQuestions, listHashedAnswers);
   contracts.push(g);
   return g;
   }
@@ -50,6 +51,7 @@ mapping(uint8 => Player) public players;
 mapping(address => uint8) public getNumFromAddress;
 
 //Game input data, set in constructor
+//Change listQuestions to PRIVATE!!!
 string public listQuestions;
 string public listHashedAnswers;
 uint public entryFee;
@@ -63,16 +65,18 @@ uint8 public numPlayers;
 uint public numRounds;
 bool public registrationOpen;
 string public winnerName;
+bool public gameEnded;
 
+//Make private before deploying
 string[] public arrayQuestions;
-string[] public arrayAnswers;
+string[] public arrayHashedAnswers;
 mapping(uint8 => Rounds) public rounds;
 
-constructor(address _owner, uint _entryFee, string _listQuestions, string _listAnswers) public {
+constructor(address _owner, uint _entryFee, string _listQuestions, string _listHashedAnswers) public {
   owner = _owner;
   entryFee = _entryFee;
   listQuestions = _listQuestions;
-  listHashedAnswers = _listAnswers;
+  listHashedAnswers = _listHashedAnswers;
 }
 
 modifier onlyOwner() {
@@ -107,12 +111,10 @@ function newGame(uint _entryFeeInFinney) onlyOwner public {
 /// Set the questions and answers
 function setQuestions(string _questions, string _answers) onlyOwner public {
     arrayQuestions = convertStringToArray(_questions, ";");
-    arrayAnswers = convertStringToArray(_answers, ";");
-
+    arrayHashedAnswers = convertStringToArray(_answers, ";");
     numRounds = arrayQuestions.length-1;
     for (uint8 y = 0; y < numRounds; y++){
         rounds[y].question = arrayQuestions[y];
-        rounds[y].answer = arrayAnswers[y];
         }
 }
 
@@ -174,11 +176,10 @@ function guess(string _guess) public {
     // !WEAKNESS: users could theoretically check answers by checking gas estimates
     if (keccak256(players[thisPlayer].guess) == keccak256(rounds[currentRound].answer)) {
         players[thisPlayer].score++;
-        endRound();
     }
 }
 
-function endRound() private {
+function endRound() public onlyOwner {
     rounds[currentRound].roundComplete = true;
     // Reveal the answer by assigning it to a public variable
     currentAnswer = rounds[currentRound].answer;
@@ -193,7 +194,9 @@ function endRound() private {
 
 // Calculates the winner and assigns the grand prize
 function endGame() onlyOwner public {
+    gameEnded = true;
     uint8 winningScore = 0;
+
     for (uint8 y = 0; y < numPlayers; y++) {
         if (players[y].score > winningScore) {
             winningScore = players[y].score;
