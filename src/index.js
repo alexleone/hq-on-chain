@@ -10,6 +10,8 @@ import MainStart from './MainStart';
 import CreateGame from './CreateGame';
 import ManageGame from './ManageGame';
 import PlayGame from './PlayGame';
+import HomeContainer from './layouts/home/HomeContainer'
+import Test from './Test';
 import { LoadingContainer } from 'drizzle-react-components'
 
 import store from './store'
@@ -27,6 +29,8 @@ ReactDOM.render((
             <Route path="/create" component={CreateGame} />
             <Route path="/manage" component={ManageGame} />
             <Route path="/play" component={PlayGame} />
+            <Route path="/home" component={HomeContainer} />
+            <Route path="/test" component={Test} />
           </Route>
         </Router>
       </LoadingContainer>
