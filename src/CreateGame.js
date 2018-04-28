@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
-import _ from 'lodash';
+import bindAll from 'lodash/bindAll';
+import getWeb3 from './util/web3/getWeb3';
+import GameFactory from './../build/contracts/GameFactory.json'
 
 class CreateGame extends Component {
   constructor(props) {
@@ -14,7 +16,7 @@ class CreateGame extends Component {
       answerThree: '',
     };
 
-    _.bindAll(this, ['createGame']);
+    bindAll(this, ['createGame']);
   }
 
   createGame (event) {
@@ -32,6 +34,33 @@ class CreateGame extends Component {
       this.state.answerThree,
     ];
 
+    getWeb3
+      .then((result) => {
+        const web3 = result.payload.web3Instance;
+
+        // TODO: change this to the real contract
+        const contractAddress = '0x9291a5806820f6d47c6260e616ce0ed1692805f5';
+        const entryFee = 0.00000000001;
+
+        const factory = new web3.eth.Contract(
+          GameFactory.abi,
+          contractAddress
+        );
+
+        const tx = factory.methods.createGame(
+          entryFee,
+          questions.join(';'),
+          answers.join(';')
+        );
+
+        return tx.call();
+      })
+      .then((gameAddress) => {
+        // TODO: this is the game address
+        console.log(gameAddress);
+      })
+      .catch((err) => console.error(err));
+
   }
 
   render() {
@@ -43,7 +72,7 @@ class CreateGame extends Component {
         <form
          className='form-horizontal'
          onSubmit={this.createGame.bind(this)}>
-          <button type='sumbit' className='btn btn-default'>Finish!</button>
+
           <div className='form-group'>
             <label>Name</label>
             <input type='text'
@@ -140,13 +169,19 @@ class CreateGame extends Component {
             <input type='text'
                    className='form-control'
                    placeholder='Answer'
-                   value={this.state.answerTwo}
+                   value={this.state.answerThree}
                    onChange={(e) => {
                      e.preventDefault();
-                     this.setState({answerTwo: e.target.value});
+                     this.setState({answerThree: e.target.value});
                    }}>
             </input>
           </div>
+
+          <button type='sumbit'
+                  className='btn btn-primary btn-lg btn-block'>
+            Finish!
+          </button>
+
         </form>
       </div>
     );
