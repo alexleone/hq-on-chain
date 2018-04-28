@@ -6,7 +6,10 @@ import { DrizzleProvider } from 'drizzle-react'
 
 // Layouts
 import App from './App'
-import HomeContainer from './layouts/home/HomeContainer'
+import MainStart from './MainStart';
+import CreateGame from './CreateGame';
+import ManageGame from './ManageGame';
+import PlayGame from './PlayGame';
 import { LoadingContainer } from 'drizzle-react-components'
 
 import store from './store'
@@ -20,7 +23,10 @@ ReactDOM.render((
       <LoadingContainer>
         <Router history={history}>
           <Route path="/" component={App}>
-            <IndexRoute component={HomeContainer} />
+            <IndexRoute component={MainStart} />
+            <Route path="/create" component={CreateGame} />
+            <Route path="/manage" component={ManageGame} />
+            <Route path="/play" component={PlayGame} />
           </Route>
         </Router>
       </LoadingContainer>
