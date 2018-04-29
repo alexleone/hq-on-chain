@@ -147,7 +147,7 @@ contract Game {
             players[y].guess = "";
         }
         currentRound++; // Iterate to the next round
-        if (currentRound >= numRounds-1) { endGame();
+        if (currentRound >= numRounds) { endGame();
           }else{
             startNewRound();
             } //End the game if necessary
