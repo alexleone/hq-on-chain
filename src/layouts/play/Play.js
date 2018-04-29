@@ -143,13 +143,30 @@ class Play extends Component {
     return (
       <main className="container">
         <div className='form-group'>
-          <h1>Play the Game</h1>
+          <h1 className='row text-center'>
+            Play Travia
+          </h1>
           <form>
-            <h2>Current Round: {this.state.currentQuestion === ''  ? 'Game Not Started' : (parseInt(this.state.currentRound) + 1)}</h2>
-            <h2>Current Question:</h2>
-            <h3>{this.state.currentQuestion}</h3>
             <div className='form-group'>
-              <label>Answer to the question</label>
+              <label>Round</label>
+              <input type='text'
+                     className='form-control'
+                     placeholder='Game Not Started'
+                     value={this.state.currentQuestion === ''  ? undefined : (parseInt(this.state.currentRound) + 1)}
+                     readOnly>
+              </input>
+            </div>
+            <div className='form-group'>
+              <label>Question</label>
+              <input type='text'
+                     className='form-control'
+                     placeholder='Question'
+                     value={this.state.currentQuestion}
+                     readOnly>
+              </input>
+            </div>
+            <div className='form-group'>
+              <label>Answer</label>
               <input type='text'
                      className='form-control'
                      placeholder='Guess...'
@@ -162,10 +179,10 @@ class Play extends Component {
             </div>
           </form>
           <div className="btn-group" role="group">
-            <button className="btn btn-default"
+            <button className="btn btn-primary"
                     type="button"
                     onClick={this.submitAnswer}>
-              Submit Answer
+              Submit
             </button>
           </div>
         </div>

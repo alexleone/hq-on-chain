@@ -52,19 +52,33 @@ class Register extends Component {
   render() {
     return (
       <main className="container">
-        <div className='form-group'>
-          <label>User Name</label>
-          <input type='text'
-                 className='form-control'
-                 placeholder='User Name'
-                 value={this.state.userName}
-                 onChange={(e) => {
-                   e.preventDefault();
-                   this.setState({ userName: e.target.value });
-                 }}>
-          </input>
-          <button onClick={this.registerUser}>Register for Trivia</button>
-        </div>
+        <h1 className='row text-center'>
+          Register For Travia
+        </h1>
+        <form>
+          <div className='form-group'>
+            <label>Game Address</label>
+            <input type='text'
+                   className='form-control'
+                   value={this.props.params.gameAddress}
+                   readOnly>
+            </input>
+          </div>
+          <div className='form-group'>
+            <label>User Name</label>
+            <input type='text'
+                   className='form-control'
+                   placeholder='User Name'
+                   value={this.state.userName}
+                   onChange={(e) => {
+                     e.preventDefault();
+                     this.setState({ userName: e.target.value });
+                   }}>
+            </input>
+          </div>
+          <button type='button' className='btn btn-primary' onClick={this.registerUser}>Register</button>
+        </form>
+
       </main>
     )
   }
