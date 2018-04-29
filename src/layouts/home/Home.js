@@ -21,7 +21,7 @@ class Home extends Component {
 
   render() {
     if (this.props.drizzleStatus.initialized) {
-      const myContext = this.context;
+      // const myContext = this.context;
       // this.context.drizzle.contracts.GameFactory.methods.owner().call().then(function () {
       //   debugger
       // }).catch(function () {
