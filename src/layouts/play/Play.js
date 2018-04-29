@@ -1,15 +1,14 @@
-import React, { Component } from 'react'
-import getWeb3 from "./util/web3/getWeb3";
-import Game from './../build/contracts/Game.json'
+import React, { Component, PropTypes } from 'react'
+import getWeb3 from "../../util/web3/getWeb3";
+import Game from './../../../build/contracts/Game.json'
 
-class PlayGame extends Component {
+class Play extends Component {
   constructor(props, context) {
     super(props, context);
     this.Game = null;
     this.state = {
-      currentQuestion: '',
-      currentGuess: '',
-      round: 0,
+      userName: '',
+      registered: false,
       contractAddress: this.props.params.gameAddress
     }
   }
@@ -38,15 +37,18 @@ class PlayGame extends Component {
 
   render() {
     return (
-      <div className='container'>
-        <div className='row'>
-          <div className='col-md-12'>
-            <p>Play Game</p>
-          </div>
+      <main className="container">
+        <div className='form-group'>
+          <h1>Play the Game</h1>
+
         </div>
-      </div>
-    );
+      </main>
+    )
   }
 }
 
-export default PlayGame
+Play.contextTypes = {
+  drizzle: PropTypes.object,
+};
+
+export default Play

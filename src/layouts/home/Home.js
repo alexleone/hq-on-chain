@@ -74,17 +74,12 @@ class Home extends Component {
     }
   }
   registerUser = ()=> {
-    debugger
     const tx = window.GameMethods.register(this.state.userName);
-
-    debugger
-
     tx.send({
       from: this.props.accounts[0],
       gasPrice: 0,
       gasLimit: 210000
     }).then((response)=>{
-      debugger
       console.log(response)
     }).catch((error)=>{
       console.error(error)

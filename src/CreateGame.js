@@ -14,13 +14,14 @@ class CreateGame extends Component {
       answerOne: '',
       answerTwo: '',
       answerThree: '',
+      createdGame: false
     };
     // console.log(context)
     bindAll(this, ['createGame']);
   }
 
-  createGame (event) {
-    event.preventDefault()
+  createGame(event) {
+    event.preventDefault();
 
     const questions = [
       this.state.questionOne,
@@ -63,9 +64,17 @@ class CreateGame extends Component {
         // TODO: this is the game address
         const gameEvent = result.events.GameCreated;
         window.gameAddress = gameEvent.returnValues.gameAddress;
+        this.setState({ createdGame: true });
       })
       .catch((err) => console.error(err));
   }
+
+  renderGetRegisterLink = () => {
+    const url = `/register/${window.gameAddress}`;
+    if (this.state.createdGame) {
+      return <div><br/><br/><br/><a href={url}>Game Registration Link</a><br/><br/><br/></div>
+    }
+  };
 
   render() {
     return (
@@ -83,7 +92,7 @@ class CreateGame extends Component {
                    value={this.state.gameName}
                    onChange={(e) => {
                      e.preventDefault();
-                     this.setState({gameName: e.target.value});
+                     this.setState({ gameName: e.target.value });
                    }}>
             </input>
           </div>
@@ -104,7 +113,7 @@ class CreateGame extends Component {
                    value={this.state.questionOne}
                    onChange={(e) => {
                      e.preventDefault();
-                     this.setState({questionOne: e.target.value});
+                     this.setState({ questionOne: e.target.value });
                    }}>
             </input>
           </div>
@@ -116,7 +125,7 @@ class CreateGame extends Component {
                    value={this.state.answerOne}
                    onChange={(e) => {
                      e.preventDefault();
-                     this.setState({answerOne: e.target.value});
+                     this.setState({ answerOne: e.target.value });
                    }}>
             </input>
           </div>
@@ -133,7 +142,7 @@ class CreateGame extends Component {
                    value={this.state.questionTwo}
                    onChange={(e) => {
                      e.preventDefault();
-                     this.setState({questionTwo: e.target.value});
+                     this.setState({ questionTwo: e.target.value });
                    }}>
             </input>
           </div>
@@ -145,7 +154,7 @@ class CreateGame extends Component {
                    value={this.state.answerTwo}
                    onChange={(e) => {
                      e.preventDefault();
-                     this.setState({answerTwo: e.target.value});
+                     this.setState({ answerTwo: e.target.value });
                    }}>
             </input>
           </div>
@@ -162,7 +171,7 @@ class CreateGame extends Component {
                    value={this.state.questionThree}
                    onChange={(e) => {
                      e.preventDefault();
-                     this.setState({questionThree: e.target.value});
+                     this.setState({ questionThree: e.target.value });
                    }}>
             </input>
           </div>
@@ -174,7 +183,7 @@ class CreateGame extends Component {
                    value={this.state.answerThree}
                    onChange={(e) => {
                      e.preventDefault();
-                     this.setState({answerThree: e.target.value});
+                     this.setState({ answerThree: e.target.value });
                    }}>
             </input>
           </div>
@@ -183,7 +192,7 @@ class CreateGame extends Component {
                   className='btn btn-primary btn-lg btn-block'>
             Finish!
           </button>
-
+          {this.renderGetRegisterLink()}
         </form>
       </div>
     );

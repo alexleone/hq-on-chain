@@ -9,9 +9,9 @@ import App from './App'
 import MainStart from './MainStart';
 import CreateGameContainer from './CreateGameContainer';
 import ManageGameContainer from './ManageGameContainer';
-import PlayGame from './PlayGame';
+import PlayContainer from './layouts/play/PlayContainer'
 import HomeContainer from './layouts/home/HomeContainer'
-import RegisterContainer from './layouts/register/Register'
+import RegisterContainer from './layouts/register/RegisterContainer'
 import Test from './Test';
 import { LoadingContainer } from 'drizzle-react-components'
 
@@ -29,7 +29,7 @@ ReactDOM.render((
             <IndexRoute component={MainStart} />
             <Route path="/create" component={CreateGameContainer} />
             <Route path="/manage" component={ManageGameContainer} />
-            <Route path="/play" component={PlayGame} />
+            <Route path="/play/:gameAddress" component={PlayContainer} />
             <Route path="/home" component={HomeContainer} />
             <Route path="/test" component={Test} />
             <Route path="/register/:gameAddress" component={RegisterContainer} />

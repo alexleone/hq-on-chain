@@ -1,16 +1,15 @@
 import React, { Component, PropTypes } from 'react'
-import { AccountData, ContractData, ContractForm } from 'drizzle-react-components'
 import getWeb3 from "../../util/web3/getWeb3";
 import Game from './../../../build/contracts/Game.json'
 
 class Register extends Component {
   constructor(props, context) {
     super(props, context);
+    this.registerUser = this.registerUser.bind(this);
     this.Game = null;
     this.state = {
-      currentGuess: '',
-      currentQuestion: '',
-      userName: ''
+      userName: '',
+      contractAddress: this.props.params.gameAddress
     }
   }
 
@@ -36,24 +35,23 @@ class Register extends Component {
       });
   }
 
-  registerUser = () => {
+  registerUser() {
     const tx = window.GameMethods.register(this.state.userName);
+    const from = this.props.accounts[0];
     tx.send({
-      from: '0xEB451C6F3c6B137E73B53800711Ad037F056309e',
+      from,
       gasLimit: 510000,
       value: 1000000
     }).then((response) => {
-      debugger
-      console.log(response)
+      location.href = `/play/${this.state.contractAddress}`;
     }).catch((error) => {
       console.error(error)
     })
-  };
+  }
 
   render() {
     return (
       <main className="container">
-
         <div className='form-group'>
           <label>User Name</label>
           <input type='text'
