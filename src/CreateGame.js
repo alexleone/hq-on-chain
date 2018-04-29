@@ -15,7 +15,7 @@ class CreateGame extends Component {
       answerTwo: '',
       answerThree: '',
     };
-
+    // console.log(context)
     bindAll(this, ['createGame']);
   }
 
@@ -50,8 +50,8 @@ class CreateGame extends Component {
 
         const tx = factory.methods.createGame(
           entryFee,
-          questions.join(';'),
-          answers.join(';')
+          questions.join(';') + ';',
+          answers.join(';') + ';'
         );
 
         return tx.send({
@@ -62,7 +62,7 @@ class CreateGame extends Component {
       .then((result) => {
         // TODO: this is the game address
         const gameEvent = result.events.GameCreated;
-        alert('New game address: ', gameEvent.returnValues.gameAddress);
+        window.gameAddress = gameEvent.returnValues.gameAddress;
       })
       .catch((err) => console.error(err));
   }

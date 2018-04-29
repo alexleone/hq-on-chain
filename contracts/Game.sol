@@ -68,8 +68,9 @@ contract Game {
         arrayQuestions = convertStringToArray(_questions, ";");
         arrayHashedAnswers = convertStringToArray(_answers, ";");
         numRounds = arrayQuestions.length-1;
-        for (uint8 y = 0; y < numRounds; y++){
+        for (uint8 y = 0; y <= numRounds; y++){
             rounds[y].question = arrayQuestions[y];
+            rounds[y].answer = arrayHashedAnswers[y];
             }
     }
 
@@ -146,7 +147,10 @@ contract Game {
             players[y].guess = "";
         }
         currentRound++; // Iterate to the next round
-        if (currentRound >= numRounds) { endGame(); } //End the game if necessary
+        if (currentRound >= numRounds-1) { endGame();
+          }else{
+            startNewRound();
+            } //End the game if necessary
     }
 
     // Calculates the winner and assigns the grand prize
