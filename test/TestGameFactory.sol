@@ -15,7 +15,7 @@ contract TestGameFactory{
     string playerName = "Satoshi";
 
     address gameAddress;
-    address expectedOwner = 0x8B618f31Baf048A32aEb9DbeF0112343D556490D;
+    address expectedOwner = 0x6d72Ed893Aae2dF2ACe23e5fE65F7D559b0279a8;
 
   function testGetFactoryOwner() {
       Assert.equal(factory.owner(), expectedOwner, "GameFactory owner should be equal to the address who deployed.");
