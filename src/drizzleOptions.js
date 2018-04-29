@@ -1,5 +1,5 @@
 import GameFactory from './../build/contracts/GameFactory.json'
-import Game from './../build/contracts/Game.json'
+import GameSolo from  './../build/contracts/GameSolo.json'
 
 const drizzleOptions = {
   web3: {
@@ -10,7 +10,7 @@ const drizzleOptions = {
     }
   },
   contracts: [
-    // Game,
+    GameSolo,
     GameFactory
   ],
   events: {
