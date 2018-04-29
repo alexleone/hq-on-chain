@@ -1,7 +1,5 @@
-// import ComplexStorage from './../build/contracts/ComplexStorage.json'
-// import SimpleStorage from './../build/contracts/SimpleStorage.json'
-// import TutorialToken from './../build/contracts/TutorialToken.json'
 import GameFactory from './../build/contracts/GameFactory.json'
+import Game from './../build/contracts/Game.json'
 
 const drizzleOptions = {
   web3: {
@@ -12,9 +10,7 @@ const drizzleOptions = {
     }
   },
   contracts: [
-    // ComplexStorage,
-    // SimpleStorage,
-    // TutorialToken,
+    // Game,
     GameFactory
   ],
   events: {
