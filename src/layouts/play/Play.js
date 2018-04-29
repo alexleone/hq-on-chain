@@ -152,7 +152,7 @@ class Play extends Component {
               <input type='text'
                      className='form-control'
                      placeholder='Game Not Started'
-                     value={this.state.currentQuestion === ''  ? undefined : (parseInt(this.state.currentRound) + 1)}
+                     value={this.state.currentQuestion === ''  ? undefined : (parseInt(this.state.currentRound, 10) + 1)}
                      readOnly>
               </input>
             </div>
