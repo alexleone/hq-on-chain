@@ -2,11 +2,9 @@ pragma solidity ^0.4.21;
 
 import './strings.sol';
 
-
-contract Game{
+contract GameSolo{
 
     using strings for *; //Arachnid library declaration
-
 
     struct Rounds {
         string question;
@@ -53,8 +51,8 @@ contract Game{
     modifier onlyOwner() {
         require(msg.sender == owner);  _; }
 
-    constructor(address _owner, uint _entryFee, string _listQuestions, string _listHashedAnswers) public {
-      owner = _owner;
+    function newGame(address _owner, uint _entryFee, string _listQuestions, string _listHashedAnswers) onlyOwner public {
+      owner = msg.sender;
       entryFee = _entryFee;
       listQuestions = _listQuestions;
       listHashedAnswers = _listHashedAnswers;
@@ -92,7 +90,7 @@ contract Game{
     /// Register using your name and pay the entry fee
     function register(string _playerName) payable public {
         //Check that registration is open
-        assert(msg.value >= entryFee && registrationOpen);
+        //assert(msg.value >= entryFee && registrationOpen);
         // The first player is player 0
         players[numPlayers].playerName = _playerName;
         players[numPlayers].playerAddress = msg.sender;

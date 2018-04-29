@@ -2,7 +2,7 @@ pragma solidity ^0.4.17;
 
 import "truffle/Assert.sol";
 import "truffle/DeployedAddresses.sol";
-import "../contracts/GameFactory.sol";
+import "../contracts/GameSolo.sol";
 
 contract TestGameFactory{
 //  GameFactory factory = GameFactory(DeployedAddresses.GameFactory());
