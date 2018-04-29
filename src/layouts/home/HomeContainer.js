@@ -7,6 +7,7 @@ const mapStateToProps = state => {
     accounts: state.accounts,
     GameFactory: state.contracts.GameFactory,
     Game: state.contracts.Game,
+    GameSolo: state.contracts.GameSolo,
     drizzleStatus: state.drizzleStatus
   }
 };
