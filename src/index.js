@@ -28,7 +28,7 @@ ReactDOM.render((
           <Route path="/" component={App}>
             <IndexRoute component={MainStart} />
             <Route path="/create" component={CreateGameContainer} />
-            <Route path="/manage" component={ManageGameContainer} />
+            <Route path="/manage/:gameAddress" component={ManageGameContainer} />
             <Route path="/play/:gameAddress" component={PlayContainer} />
             <Route path="/home" component={HomeContainer} />
             <Route path="/test" component={Test} />

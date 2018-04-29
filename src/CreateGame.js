@@ -41,7 +41,9 @@ class CreateGame extends Component {
         const web3 = result.payload.web3Instance;
 
         // NOTE: this a real contract at Ropsten
-        const contractAddress = '0xfb88db7d0c779d11898ae7d8db7ecc458c979aaa';
+        // const contractAddress = '0xfb88db7d0c779d11898ae7d8db7ecc458c979aaa';
+        // Leone Test NET:
+        const contractAddress = '0x114a0f01509ebb959d978541fc9725367eced73b';
         const entryFee = 23;
 
         const factory = new web3.eth.Contract(
@@ -70,9 +72,9 @@ class CreateGame extends Component {
   }
 
   renderGetRegisterLink = () => {
-    const url = `/register/${window.gameAddress}`;
     if (this.state.createdGame) {
-      return <div><br/><br/><br/><a href={url}>Game Registration Link</a><br/><br/><br/></div>
+      return <div><br/><br/><a href={`/manage/${window.gameAddress}`}>Manage Link</a>
+        <br/><a href={`/register/${window.gameAddress}`}>Game Registration Link</a><br/><br/><br/></div>
     }
   };
 

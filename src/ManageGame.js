@@ -6,8 +6,9 @@ import Game from './../build/contracts/Game.json'
 class ManageGame extends Component {
   constructor(props) {
     super(props);
+    debugger
     this.state = {
-      gameAddress: ''
+      gameAddress: this.props.params.gameAddress
     };
 
     bindAll(this, ['startGame', 'endRound']);
