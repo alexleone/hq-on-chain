@@ -50,8 +50,8 @@ class CreateGame extends Component {
 
         const tx = factory.methods.createGame(
           entryFee,
-          questions.join(';'),
-          answers.join(';')
+          questions.join(';') + ';',
+          answers.join(';') + ';'
         );
 
         return tx.send({
