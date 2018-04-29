@@ -95,7 +95,7 @@
         "id": 604,
         "nodeType": "ImportDirective",
         "scope": 645,
-        "sourceUnit": 2332,
+        "sourceUnit": 2992,
         "src": "26:23:1",
         "symbolAliases": [],
         "unitAlias": ""
@@ -193,7 +193,7 @@
                 "name": "msg",
                 "nodeType": "Identifier",
                 "overloadedDeclarations": [],
-                "referencedDeclaration": 2346,
+                "referencedDeclaration": 3006,
                 "src": "195:3:1",
                 "typeDescriptions": {
                   "typeIdentifier": "t_magic_message",
@@ -268,7 +268,7 @@
                           "name": "msg",
                           "nodeType": "Identifier",
                           "overloadedDeclarations": [],
-                          "referencedDeclaration": 2346,
+                          "referencedDeclaration": 3006,
                           "src": "382:3:1",
                           "typeDescriptions": {
                             "typeIdentifier": "t_magic_message",
@@ -647,7 +647,7 @@
         "id": 604,
         "nodeType": "ImportDirective",
         "scope": 645,
-        "sourceUnit": 2332,
+        "sourceUnit": 2992,
         "src": "26:23:1",
         "symbolAliases": [],
         "unitAlias": ""
@@ -745,7 +745,7 @@
                 "name": "msg",
                 "nodeType": "Identifier",
                 "overloadedDeclarations": [],
-                "referencedDeclaration": 2346,
+                "referencedDeclaration": 3006,
                 "src": "195:3:1",
                 "typeDescriptions": {
                   "typeIdentifier": "t_magic_message",
@@ -820,7 +820,7 @@
                           "name": "msg",
                           "nodeType": "Identifier",
                           "overloadedDeclarations": [],
-                          "referencedDeclaration": 2346,
+                          "referencedDeclaration": 3006,
                           "src": "382:3:1",
                           "typeDescriptions": {
                             "typeIdentifier": "t_magic_message",
@@ -1176,14 +1176,7 @@
     "name": "solc",
     "version": "0.4.23+commit.124ca40d.Emscripten.clang"
   },
-  "networks": {
-    "5777": {
-      "events": {},
-      "links": {},
-      "address": "0x8baa8afadcd07440488d26aee49a239303027dd1",
-      "transactionHash": "0xe5bccb5bf8460ef6333efa170ed780eb289ac6c0d60a4daf479aaa3f7cb2d39f"
-    }
-  },
+  "networks": {},
   "schemaVersion": "2.0.0",
-  "updatedAt": "2018-04-29T05:57:29.588Z"
+  "updatedAt": "2018-04-29T05:58:49.562Z"
 }
