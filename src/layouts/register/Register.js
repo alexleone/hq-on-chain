@@ -1,5 +1,4 @@
 import React, { Component, PropTypes } from 'react'
-import { AccountData, ContractData, ContractForm } from 'drizzle-react-components'
 import getWeb3 from "../../util/web3/getWeb3";
 import Game from './../../../build/contracts/Game.json'
 
