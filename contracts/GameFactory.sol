@@ -10,7 +10,11 @@ contract GameFactory {
 address[] public contracts;
 address public owner = msg.sender;
 
-function createGame(
+  event GameCreated(
+    address gameAddress
+  );
+
+  function createGame(
     uint entryFee,
     string listQuestions,
     string listHashedAnswers
@@ -21,6 +25,9 @@ function createGame(
 
     Game g = new Game(msg.sender, entryFee, listQuestions, listHashedAnswers);
     contracts.push(g);
+
+    emit GameCreated(address(g));
+
     return g;
-    }
+  }
 }

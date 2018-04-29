@@ -15,7 +15,7 @@ class CreateGame extends Component {
       answerTwo: '',
       answerThree: '',
     };
-
+    // console.log(context)
     bindAll(this, ['createGame']);
   }
 
@@ -36,11 +36,12 @@ class CreateGame extends Component {
 
     getWeb3
       .then((result) => {
+
         const web3 = result.payload.web3Instance;
 
         // TODO: change this to the real contract
-        const contractAddress = '0x9291a5806820f6d47c6260e616ce0ed1692805f5';
-        const entryFee = 0.00000000001;
+        const contractAddress = '0xfe79dbed5e220c08a9f5db2e1d3f957ee0f96e22';
+        const entryFee = 23;
 
         const factory = new web3.eth.Contract(
           GameFactory.abi,
@@ -53,14 +54,18 @@ class CreateGame extends Component {
           answers.join(';')
         );
 
-        return tx.call();
+        return tx.send({
+          from: this.props.accounts[0],
+          gasPrice: 2,
+          gasLimit: 5000000
+        });
       })
-      .then((gameAddress) => {
+      .then((result) => {
         // TODO: this is the game address
-        console.log(gameAddress);
+        const gameEvent = result.events.GameCreated;
+        alert(gameEvent.returnValues.gameAddress);
       })
       .catch((err) => console.error(err));
-
   }
 
   render() {
