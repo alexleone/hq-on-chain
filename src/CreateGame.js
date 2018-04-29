@@ -43,7 +43,7 @@ class CreateGame extends Component {
         // NOTE: this a real contract at Ropsten
         // const contractAddress = '0xfb88db7d0c779d11898ae7d8db7ecc458c979aaa';
         // Leone Test NET:
-        const contractAddress = '0x114a0f01509ebb959d978541fc9725367eced73b';
+        const contractAddress = '0x9ae0e4d1e0ecb751e9c2e39096807954c8a18379';
         const entryFee = 23;
 
         const factory = new web3.eth.Contract(
