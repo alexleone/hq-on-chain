@@ -31,8 +31,8 @@ contract GameSolo{
 
     uint public entryFee; //units of wei
     //!!!!Make Private
-    string public listQuestions;
-    string public listHashedAnswers;
+    //string public listQuestions;
+    //string public listHashedAnswers;
 
     string public currentQuestion;
     uint public grandPrize;
@@ -51,10 +51,11 @@ contract GameSolo{
     modifier onlyOwner() {
         require(msg.sender == owner);  _; }
 
-    function newGame(uint _entryFee, string _listQuestions, string _listHashedAnswers) public {
+    function newGame(uint _entryFee, string _listQuestions, string _listHashedAnswers) public returns(address){
       owner = msg.sender;
       entryFee = _entryFee;
       setQuestions(_listQuestions, _listHashedAnswers);
+      return owner;
     }
 
     function getPlayerName(uint8 playerID) public view returns(string){ //bool, bool, string, address, uint8, uint){
@@ -71,8 +72,9 @@ contract GameSolo{
         arrayQuestions = convertStringToArray(_questions, ";");
         arrayHashedAnswers = convertStringToArray(_answers, ";");
         numRounds = arrayQuestions.length-1;
-        for (uint8 y = 0; y < numRounds; y++){
+        for (uint8 y = 0; y <= numRounds; y++){
             rounds[y].question = arrayQuestions[y];
+            rounds[y].answer = arrayHashedAnswers[y];
             }
     }
 
@@ -107,7 +109,6 @@ contract GameSolo{
     function startGame() onlyOwner public returns(bool) {
         registrationOpen = false;
         grandPrize = numPlayers * entryFee;
-        setQuestions(listQuestions, listHashedAnswers);
         startNewRound();
         return true;
     }
@@ -149,7 +150,10 @@ contract GameSolo{
             players[y].guess = "";
         }
         currentRound++; // Iterate to the next round
-        if (currentRound >= numRounds) { endGame(); } //End the game if necessary
+        if (currentRound >= numRounds) { endGame();
+          }else{
+            startNewRound();
+            } //End the game if necessary
     }
 
     // Calculates the winner and assigns the grand prize
