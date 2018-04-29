@@ -1,6 +1,5 @@
 import React, { Component } from 'react'
 import { Link } from 'react-router';
-import { AccountData, ContractData, ContractForm } from 'drizzle-react-components'
 
 class Test extends Component {
   constructor(props, context) {
