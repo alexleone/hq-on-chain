@@ -2,18 +2,8 @@ pragma solidity ^0.4.21;
 
 import './strings.sol';
 
-
-contract Game{
-
+contract Game {
     using strings for *; //Arachnid library declaration
-
-
-    struct Rounds {
-        string question;
-        string answer;
-        bool roundStarted;
-        bool roundComplete;
-    }
 
     struct Player {
         string playerName;
@@ -23,6 +13,13 @@ contract Game{
         address playerAddress;
         uint8 score;
         uint winnings;
+    }
+
+    struct Rounds {
+        string question;
+        string answer;
+        bool roundStarted;
+        bool roundComplete;
     }
 
     //bi-directional mapping, since solidity is not great with arrays
@@ -59,10 +56,6 @@ contract Game{
       listQuestions = _listQuestions;
       listHashedAnswers = _listHashedAnswers;
     //  setQuestions(_listQuestions, _listHashedAnswers);
-    }
-
-    function getPlayerName(uint8 playerID) public view returns(string){ //bool, bool, string, address, uint8, uint){
-      return(players[playerID].playerName);
     }
 
     // Lookup a player's number using their address

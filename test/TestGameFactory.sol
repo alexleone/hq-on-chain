@@ -55,8 +55,6 @@ function register(){
 function testStartGame(){
   game.startGame();
   Assert.isFalse(game.registrationOpen,"Registration should close after startGame()");
-  event.log(game.grandPrize);
-
 }
 
 }

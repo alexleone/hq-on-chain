@@ -51,12 +51,10 @@ contract GameSolo{
     modifier onlyOwner() {
         require(msg.sender == owner);  _; }
 
-    function newGame(address _owner, uint _entryFee, string _listQuestions, string _listHashedAnswers) onlyOwner public {
+    function newGame(uint _entryFee, string _listQuestions, string _listHashedAnswers) public {
       owner = msg.sender;
       entryFee = _entryFee;
-      listQuestions = _listQuestions;
-      listHashedAnswers = _listHashedAnswers;
-    //  setQuestions(_listQuestions, _listHashedAnswers);
+      setQuestions(_listQuestions, _listHashedAnswers);
     }
 
     function getPlayerName(uint8 playerID) public view returns(string){ //bool, bool, string, address, uint8, uint){
