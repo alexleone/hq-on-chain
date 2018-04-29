@@ -107,7 +107,7 @@
         "id": 619,
         "nodeType": "ImportDirective",
         "scope": 670,
-        "sourceUnit": 3025,
+        "sourceUnit": 2357,
         "src": "26:23:1",
         "symbolAliases": [],
         "unitAlias": ""
@@ -205,7 +205,7 @@
                 "name": "msg",
                 "nodeType": "Identifier",
                 "overloadedDeclarations": [],
-                "referencedDeclaration": 3039,
+                "referencedDeclaration": 2371,
                 "src": "195:3:1",
                 "typeDescriptions": {
                   "typeIdentifier": "t_magic_message",
@@ -322,7 +322,7 @@
                           "name": "msg",
                           "nodeType": "Identifier",
                           "overloadedDeclarations": [],
-                          "referencedDeclaration": 3039,
+                          "referencedDeclaration": 2371,
                           "src": "435:3:1",
                           "typeDescriptions": {
                             "typeIdentifier": "t_magic_message",
@@ -793,7 +793,7 @@
         "id": 619,
         "nodeType": "ImportDirective",
         "scope": 670,
-        "sourceUnit": 3025,
+        "sourceUnit": 2357,
         "src": "26:23:1",
         "symbolAliases": [],
         "unitAlias": ""
@@ -891,7 +891,7 @@
                 "name": "msg",
                 "nodeType": "Identifier",
                 "overloadedDeclarations": [],
-                "referencedDeclaration": 3039,
+                "referencedDeclaration": 2371,
                 "src": "195:3:1",
                 "typeDescriptions": {
                   "typeIdentifier": "t_magic_message",
@@ -1008,7 +1008,7 @@
                           "name": "msg",
                           "nodeType": "Identifier",
                           "overloadedDeclarations": [],
-                          "referencedDeclaration": 3039,
+                          "referencedDeclaration": 2371,
                           "src": "435:3:1",
                           "typeDescriptions": {
                             "typeIdentifier": "t_magic_message",
@@ -1465,5 +1465,5 @@
     }
   },
   "schemaVersion": "2.0.0",
-  "updatedAt": "2018-04-29T08:23:31.737Z"
+  "updatedAt": "2018-04-29T08:49:59.494Z"
 }
