@@ -1,6 +1,8 @@
 import React, { Component, PropTypes } from 'react'
 import { AccountData, ContractData, ContractForm } from 'drizzle-react-components'
 import logo from '../../logo.png'
+import getWeb3 from "../../util/web3/getWeb3";
+import Game from './../../../build/contracts/Game.json'
 
 class Home extends Component {
   constructor(props, context) {
@@ -14,13 +16,42 @@ class Home extends Component {
     console.log(context);
 
     console.log('state');
+    this.Game = null;
+
     this.state = {
-      Game: null,
-      GameInstance: null
+      currentGuess: '',
+      currentQuestion: '',
+      userName: ''
     }
 
   }
+
   componentDidMount() {
+    getWeb3
+      .then((result) => {
+        const web3 = result.payload.web3Instance;
+
+        // TODO: change this to the real contract
+        const contractAddress = '0x396Fc0F62D974AefFe96183aDCCE31f6a06856Ba';
+
+        window.Game = new web3.eth.Contract(
+          Game.abi,
+          contractAddress
+        );
+
+        window.GameMethods = window.Game.methods;
+      })
+      .then((result) => {
+        this.setState({ currentQuestion: result })
+        console.log(result)
+        // const gameEvent = result.events.GameCreated;
+        // alert(gameEvent.returnValues.gameAddress);
+      })
+      .catch((err) => {
+        console.error(err)
+      });
+
+
     // let self = this;
     if (this.props.drizzleStatus.initialized) {
       // this.state.Game = TruffleContract(Game);
@@ -42,6 +73,24 @@ class Home extends Component {
       // });
     }
   }
+  registerUser = ()=> {
+    debugger
+    const tx = window.GameMethods.register(this.state.userName);
+
+    debugger
+
+    tx.send({
+      from: this.props.accounts[0],
+      gasPrice: 0,
+      gasLimit: 210000
+    }).then((response)=>{
+      debugger
+      console.log(response)
+    }).catch((error)=>{
+      console.error(error)
+    })
+  };
+
 
   render() {
 
@@ -75,76 +124,93 @@ class Home extends Component {
     //   "e2ba53f0": "winnerName()",
     //   "cc42e83a": "withdrawWinnings()"
 
+
     return (
       <main className="container">
-        <div className="pure-g">
-          <div className="pure-u-1-1 header">
-            <img src={logo} alt="drizzle-logo"/>
-            <h1>Drizzle Examples</h1>
-            <p>Examples of how to get started with Drizzle in various situations.</p>
+        {/*<div className="pure-g">*/}
+          {/*<div className="pure-u-1-1 header">*/}
+            {/*<img src={logo} alt="drizzle-logo"/>*/}
+            {/*<h1>Drizzle Examples</h1>*/}
+            {/*<p>Examples of how to get started with Drizzle in various situations.</p>*/}
 
-            <br/><br/>
+            {/*<br/><br/>*/}
+          {/*</div>*/}
+
+          <div className='form-group'>
+              <label>User Name</label>
+              <input type='text'
+                     className='form-control'
+                     placeholder='User Name'
+                     value={this.state.userName}
+                     onChange={(e) => {
+                       e.preventDefault();
+                       this.setState({userName: e.target.value});
+                     }}>
+              </input>
+            <button onClick={this.registerUser}>Register for Trivia</button>
           </div>
 
-          <div className="pure-u-1-1">
-            <h2>Active Account</h2>
-            <AccountData accountIndex="0" units="ether" precision="3"/>
 
-            <br/><br/>
-            Game Owner:
-            <ContractData contract="GameSolo" method="owner"/>
-            <br/>
+          {/*<div className="pure-u-1-1">*/}
+            {/*<h2>Active Account</h2>*/}
+            {/*<AccountData accountIndex="0" units="ether" precision="3"/>*/}
 
-            Game Create:
-            <ContractForm contract="GameSolo" method="newGame" labels={['Entry Fee', 'Questions List', 'Answers List']}/>
-            <br/>
+            {/*<br/><br/>*/}
+            {/*Game Owner:*/}
+            {/*<ContractData contract="GameSolo" method="owner"/>*/}
+            {/*<br/>*/}
 
-            Start Game:
-            <ContractForm contract="GameSolo" method="startGame" />
-            <br/>
+            {/*Game Create:*/}
+            {/*<ContractForm contract="GameSolo" method="newGame"*/}
+                          {/*labels={['Entry Fee', 'Questions List', 'Answers List']}/>*/}
+            {/*<br/>*/}
 
-            entryFee:
-            <ContractData contract="GameSolo" method="entryFee" />
-            <br/>
-            listQuestions:
-            <ContractData contract="GameSolo" method="listQuestions" />
-            <br/>
-            listHashedAnswers:
-            <ContractData contract="GameSolo" method="listHashedAnswers" />
-            <br/>
-            currentQuestion:
-            <ContractData contract="GameSolo" method="currentQuestion" />
-            <br/>
-            grandPrize:
-            <ContractData contract="GameSolo" method="grandPrize" />
-            <br/>
-            registrationOpen:
-            <ContractData contract="GameSolo" method="registrationOpen" />
-            <br/>
-            winnerName:
-            <ContractData contract="GameSolo" method="winnerName" />
-            <br/>
-            gameEnded:
-            <ContractData contract="GameSolo" method="gameEnded" />
-            <br/>
-            current round:
-            <ContractData contract="GameSolo" method="currentRound" />
-            <br/>
-            <br/>
-            <br/>
-            <br/>
-            <br/>
-            <br/>
-            register user:
-            <ContractForm contract="GameSolo" method="register"/>
-            <br/>
+            {/*Start Game:*/}
+            {/*<ContractForm contract="GameSolo" method="startGame"/>*/}
+            {/*<br/>*/}
 
-            {/*<ContractData contract="GameSolo" method="arrayQuestions" />*/}
-            <br/>
-            {/*<ContractData contract="GameSolo" method="arrayHashedAnswers" />*/}
-            <br/>
-          </div>
-        </div>
+            {/*entryFee:*/}
+            {/*<ContractData contract="GameSolo" method="entryFee"/>*/}
+            {/*<br/>*/}
+            {/*listQuestions:*/}
+            {/*<ContractData contract="GameSolo" method="listQuestions"/>*/}
+            {/*<br/>*/}
+            {/*listHashedAnswers:*/}
+            {/*<ContractData contract="GameSolo" method="listHashedAnswers"/>*/}
+            {/*<br/>*/}
+            {/*currentQuestion:*/}
+            {/*<ContractData contract="GameSolo" method="currentQuestion"/>*/}
+            {/*<br/>*/}
+            {/*grandPrize:*/}
+            {/*<ContractData contract="GameSolo" method="grandPrize"/>*/}
+            {/*<br/>*/}
+            {/*registrationOpen:*/}
+            {/*<ContractData contract="GameSolo" method="registrationOpen"/>*/}
+            {/*<br/>*/}
+            {/*winnerName:*/}
+            {/*<ContractData contract="GameSolo" method="winnerName"/>*/}
+            {/*<br/>*/}
+            {/*gameEnded:*/}
+            {/*<ContractData contract="GameSolo" method="gameEnded"/>*/}
+            {/*<br/>*/}
+            {/*current round:*/}
+            {/*<ContractData contract="GameSolo" method="currentRound"/>*/}
+            {/*<br/>*/}
+            {/*<br/>*/}
+            {/*<br/>*/}
+            {/*<br/>*/}
+            {/*<br/>*/}
+            {/*<br/>*/}
+            {/*register user:*/}
+            {/*<ContractForm contract="GameSolo" method="register"/>*/}
+            {/*<br/>*/}
+
+            {/*/!*<ContractData contract="GameSolo" method="arrayQuestions" />*!/*/}
+            {/*<br/>*/}
+            {/*/!*<ContractData contract="GameSolo" method="arrayHashedAnswers" />*!/*/}
+            {/*<br/>*/}
+          {/*</div>*/}
+        {/*</div>*/}
       </main>
     )
   }

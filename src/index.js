@@ -11,6 +11,7 @@ import CreateGameContainer from './CreateGameContainer';
 import ManageGameContainer from './ManageGameContainer';
 import PlayGame from './PlayGame';
 import HomeContainer from './layouts/home/HomeContainer'
+import RegisterContainer from './layouts/register/Register'
 import Test from './Test';
 import { LoadingContainer } from 'drizzle-react-components'
 
@@ -31,6 +32,7 @@ ReactDOM.render((
             <Route path="/play" component={PlayGame} />
             <Route path="/home" component={HomeContainer} />
             <Route path="/test" component={Test} />
+            <Route path="/register/:gameAddress" component={RegisterContainer} />
           </Route>
         </Router>
       </LoadingContainer>
