@@ -73,9 +73,7 @@ class CreateGame extends Component {
         <h1 className='row text-center'>
           Create New Game
         </h1>
-        <form
-         className='form-horizontal'
-         onSubmit={this.createGame.bind(this)}>
+        <form onSubmit={this.createGame.bind(this)}>
 
           <div className='form-group'>
             <label>Name</label>
