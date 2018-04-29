@@ -1,8 +1,6 @@
 import React, { Component, PropTypes } from 'react'
 import { AccountData, ContractData, ContractForm } from 'drizzle-react-components'
 import logo from '../../logo.png'
-import Game from '../../../build/contracts/Game.json'
-import TruffleContract from 'truffle-contract';
 
 class Home extends Component {
   constructor(props, context) {
